@@ -1,1 +1,5 @@
-console.log(require('crypto').randomBytes(8).toString('hex'));
+const crypto = require('crypto');
+const randomBytes = crypto.randomBytes(16);
+const randomId = randomBytes.toString('hex');
+
+console.log(randomId);
