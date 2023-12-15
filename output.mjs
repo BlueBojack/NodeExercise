@@ -1,3 +1,4 @@
-const importedFunction = require('./input');
+import checkEvenNumber from './isEvenNumber.mjs';
 
-importedFunction();
+let input = 3;
+console.log(checkEvenNumber(input));
