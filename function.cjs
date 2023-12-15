@@ -12,22 +12,19 @@ function luckyDraw(player) {
   });
 }
 
-const players = ['Joe', 'Caroline', 'Sabrina'];
+async function getResults() {
+  const players = ['Tina', 'Jorge', 'Julien'];
 
-const drawPromises = players.map(player => {
-  return luckyDraw(player)
-    .then(res => {
-      console.log(res); 
-    })
-    .catch(err => {
-      console.error(err.message); 
-    });
-}); 
+  for (const player of players) {
+    try {
+      const result = await luckyDraw(player);
+      console.log(result); 
+    } catch (error) {
+      console.error(error.message); 
+    }
+  }
 
-Promise.all(drawPromises)
-  .then(() => {
-    console.log('All draw promises resolved.');
-  })
-  .catch(err => {
-    console.error('At least one draw promise was rejected:', err.message);
-  });
+  console.log('All draw promises handled.');
+}
+
+getResults();
