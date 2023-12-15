@@ -1,8 +1,7 @@
-require('dotenv').config();
-
 const express = require('express');
 const morgan = require('morgan');
 const planetsController = require('./planetsController');
+const db = require('./db'); 
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,15 +9,18 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(morgan('dev'));
 
+
+db.connect();
+
 app.get('/', (req, res) => {
-  res.send(planetsController.getAll(req, res));
+  res.send('Hello');
 });
 
-app.get('/api/planets', planetsController.getAll);
-app.get('/api/planets/:id', planetsController.getOneById);
-app.post('/api/planets', planetsController.create);
-app.put('/api/planets/:id', planetsController.updateById);
-app.delete('/api/planets/:id', planetsController.deleteById);
+app.get('/planets', planetsController.getAll);
+app.get('/planets/:id', planetsController.getOneById);
+app.post('/planets', planetsController.create);
+app.put('/planets/:id', planetsController.updateById);
+app.delete('/planets/:id', planetsController.deleteById);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
