@@ -8,7 +8,7 @@ CREATE TABLE Books (
     price DECIMAL,
     rating FLOAT,
     stock_count INT
-)
+);
 
 ALTER TABLE Books
 ADD COLUMN publisher TEXT,
@@ -34,3 +34,7 @@ REVOKE DELETE, UPDATE ON Books FROM 'martin'@'localhost';
 BEGIN TRANSACTION;
 DELETE FROM Books WHERE book_id = 101;
 COMMIT;
+
+START TRANSACTION;
+DELETE FROM Books WHERE book_id = 103;
+ROLLBACK;
